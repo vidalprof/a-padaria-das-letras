@@ -3,13 +3,13 @@
  "sub": "Língua Portuguesa · 1º ano · o alfabeto e os pedaços das palavras",
  "ano": "1º ano",
  "prefixo": "pd",
- "mascote": "miga",
- "mascoteNome": "Miga",
+ "mascote": "fuba",
+ "mascoteNome": "Fubá",
  "crachas": 6,
  "fundo": "pd_fundo.jpg",
  "convite": "<b>Quem vai ajudar na padaria</b> hoje?",
- "abertura": "Socorro! O vento entrou na padaria da Miga e derrubou todas as etiquetas. Ninguém sabe mais que doce é qual, e a fila já está na porta. Você me ajuda a descobrir os nomes?",
- "fim": "Você salvou a padaria! Agora todo doce tem o nome certo na etiqueta. Sabe o que a Miga vai assar amanhã? Uma palavra que você ainda não sabe ler.",
+ "abertura": "Socorro! O vento entrou na padaria do Fubá e derrubou todas as etiquetas. Ninguém sabe mais que doce é qual, e a fila já está na porta. Você me ajuda a descobrir os nomes?",
+ "fim": "Você salvou a padaria! Agora todo doce tem o nome certo na etiqueta. Sabe o que o Fubá vai assar amanhã? Uma palavra que você ainda não sabe ler.",
  "mesa": "PEDAGOGO ESPECIALISTA EM ALFABETIZAÇÃO (1º ano — até o 5º ano quem manda na mesa é o pedagogo, ver _padrao/RECEITA.md), com o ROTEIRISTA, o GAME DESIGNER, o DIRETOR DE ARTE e o ENGENHEIRO. Habilidades copiadas verbatim do _curriculo/blumenau.txt (1º ano, Língua Portuguesa, Análise linguística/semiótica — alfabetização).",
  "conceitos": {
   "objetivo1": "O alfabeto tem uma ordem",
@@ -33,7 +33,7 @@
    "mec": "ouvir-achar",
    "selo": "OUÇA E ACHE",
    "enunciado": "As etiquetas da padaria caíram! Ouça e ache o doce certo.",
-   "dica": "Aperte <b>Ouvir</b> e diga a palavra junto com a Miga, bem devagar.",
+   "dica": "Aperte <b>Ouvir</b> e diga a palavra junto com o Fubá, bem devagar.",
    "conceito": "objetivo2",
    "dados": [
     {
@@ -99,7 +99,173 @@
       "É este o MEL. Ele está aceso: toque nele."
      ]
     }
-   ]
+   ],
+   "dadosExtra": {
+    "CATALOGO": {
+     "pd_pao": {
+      "nome": "PÃO",
+      "voz": "pão",
+      "img": "pd_pao",
+      "letra": "P"
+     },
+     "pd_bolo": {
+      "nome": "BOLO",
+      "voz": "bolo",
+      "img": "pd_bolo",
+      "letra": "B"
+     },
+     "pd_mel": {
+      "nome": "MEL",
+      "voz": "mel",
+      "img": "pd_mel",
+      "letra": "M"
+     },
+     "pd_queijo": {
+      "nome": "QUEIJO",
+      "voz": "queijo",
+      "img": "pd_queijo",
+      "letra": "Q"
+     },
+     "pd_leite": {
+      "nome": "LEITE",
+      "voz": "leite",
+      "img": "pd_leite",
+      "letra": "L"
+     },
+     "pd_ovo": {
+      "nome": "OVO",
+      "voz": "ovo",
+      "img": "pd_mamao",
+      "letra": "O"
+     },
+     "pd_sal": {
+      "nome": "SAL",
+      "voz": "sal",
+      "img": "pd_sal",
+      "letra": "S"
+     },
+     "B": {
+      "nome": "B",
+      "voz": "bê",
+      "texto": "B",
+      "letra": "B"
+     },
+     "D": {
+      "nome": "D",
+      "voz": "dê",
+      "texto": "D",
+      "letra": "D"
+     },
+     "P": {
+      "nome": "P",
+      "voz": "pê",
+      "texto": "P",
+      "letra": "P"
+     },
+     "M": {
+      "nome": "M",
+      "voz": "eme",
+      "texto": "M",
+      "letra": "M"
+     },
+     "N": {
+      "nome": "N",
+      "voz": "ene",
+      "texto": "N",
+      "letra": "N"
+     },
+     "W": {
+      "nome": "W",
+      "voz": "dábliu",
+      "texto": "W",
+      "letra": "W"
+     },
+     "A": {
+      "nome": "A",
+      "voz": "á",
+      "texto": "A",
+      "letra": "A"
+     },
+     "R": {
+      "nome": "R",
+      "voz": "erre",
+      "texto": "R",
+      "letra": "R"
+     },
+     "F": {
+      "nome": "F",
+      "voz": "efe",
+      "texto": "F",
+      "letra": "F"
+     },
+     "Q": {
+      "nome": "Q",
+      "voz": "quê",
+      "texto": "Q",
+      "letra": "Q"
+     },
+     "G": {
+      "nome": "G",
+      "voz": "gê",
+      "texto": "G",
+      "letra": "G"
+     },
+     "O": {
+      "nome": "O",
+      "voz": "ó",
+      "texto": "O",
+      "letra": "O"
+     },
+     "C": {
+      "nome": "C",
+      "voz": "cê",
+      "texto": "C",
+      "letra": "C"
+     },
+     "L": {
+      "nome": "L",
+      "voz": "éle",
+      "texto": "L",
+      "letra": "L"
+     },
+     "I": {
+      "nome": "I",
+      "voz": "i",
+      "texto": "I",
+      "letra": "I"
+     },
+     "T": {
+      "nome": "T",
+      "voz": "tê",
+      "texto": "T",
+      "letra": "T"
+     },
+     "E": {
+      "nome": "E",
+      "voz": "é",
+      "texto": "E",
+      "letra": "E"
+     },
+     "S": {
+      "nome": "S",
+      "voz": "esse",
+      "texto": "S",
+      "letra": "S"
+     },
+     "Z": {
+      "nome": "Z",
+      "voz": "zê",
+      "texto": "Z",
+      "letra": "Z"
+     },
+     "X": {
+      "nome": "X",
+      "voz": "xis",
+      "texto": "X",
+      "letra": "X"
+     }
+    }
+   }
   },
   {
    "id": "f02",
@@ -215,7 +381,7 @@
    "id": "f04",
    "mec": "ordenar",
    "selo": "EM ORDEM",
-   "enunciado": "A Miga guarda os pães em gavetas com letras. Ponha na ordem do alfabeto.",
+   "enunciado": "A Fubá guarda os pães em gavetas com letras. Ponha na ordem do alfabeto.",
    "dica": "Cante o alfabeto baixinho: A, B, C... qual vem primeiro?",
    "conceito": "objetivo1",
    "dados": [
@@ -237,7 +403,7 @@
    "id": "f05",
    "mec": "ouvir-achar",
    "selo": "OUÇA E ACHE",
-   "enunciado": "A Miga vai falar o nome de uma letra. Toque nela.",
+   "enunciado": "A Fubá vai falar o nome de uma letra. Toque nela.",
    "dica": "Aperte <b>Ouvir</b> de novo e repita o nome da letra em voz alta.",
    "conceito": "objetivo2",
    "dados": [
@@ -253,7 +419,7 @@
      "rotulo": "A LETRA É",
      "escrito": "B",
      "fala": "bê",
-     "enun": "Ouça e toque na <b>letra</b> que a Miga falou.",
+     "enun": "Ouça e toque na <b>letra</b> que o Fubá falou.",
      "hint": "Sem som no computador? A letra está escrita aí em cima.",
      "msg": "Isso! Esta é a letra <b>B</b>.",
      "dicas": [
@@ -274,7 +440,7 @@
      "rotulo": "A LETRA É",
      "escrito": "M",
      "fala": "eme",
-     "enun": "Ouça e toque na <b>letra</b> que a Miga falou.",
+     "enun": "Ouça e toque na <b>letra</b> que o Fubá falou.",
      "hint": "Sem som no computador? A letra está escrita aí em cima.",
      "msg": "Isso! Esta é a letra <b>M</b>.",
      "dicas": [
@@ -295,7 +461,7 @@
      "rotulo": "A LETRA É",
      "escrito": "P",
      "fala": "pê",
-     "enun": "Ouça e toque na <b>letra</b> que a Miga falou.",
+     "enun": "Ouça e toque na <b>letra</b> que o Fubá falou.",
      "hint": "Sem som no computador? A letra está escrita aí em cima.",
      "msg": "Isso! Esta é a letra <b>P</b>.",
      "dicas": [
@@ -304,13 +470,179 @@
       "É esta. Ela está acesa: toque nela."
      ]
     }
-   ]
+   ],
+   "dadosExtra": {
+    "CATALOGO": {
+     "pd_pao": {
+      "nome": "PÃO",
+      "voz": "pão",
+      "img": "pd_pao",
+      "letra": "P"
+     },
+     "pd_bolo": {
+      "nome": "BOLO",
+      "voz": "bolo",
+      "img": "pd_bolo",
+      "letra": "B"
+     },
+     "pd_mel": {
+      "nome": "MEL",
+      "voz": "mel",
+      "img": "pd_mel",
+      "letra": "M"
+     },
+     "pd_queijo": {
+      "nome": "QUEIJO",
+      "voz": "queijo",
+      "img": "pd_queijo",
+      "letra": "Q"
+     },
+     "pd_leite": {
+      "nome": "LEITE",
+      "voz": "leite",
+      "img": "pd_leite",
+      "letra": "L"
+     },
+     "pd_ovo": {
+      "nome": "OVO",
+      "voz": "ovo",
+      "img": "pd_mamao",
+      "letra": "O"
+     },
+     "pd_sal": {
+      "nome": "SAL",
+      "voz": "sal",
+      "img": "pd_sal",
+      "letra": "S"
+     },
+     "B": {
+      "nome": "B",
+      "voz": "bê",
+      "texto": "B",
+      "letra": "B"
+     },
+     "D": {
+      "nome": "D",
+      "voz": "dê",
+      "texto": "D",
+      "letra": "D"
+     },
+     "P": {
+      "nome": "P",
+      "voz": "pê",
+      "texto": "P",
+      "letra": "P"
+     },
+     "M": {
+      "nome": "M",
+      "voz": "eme",
+      "texto": "M",
+      "letra": "M"
+     },
+     "N": {
+      "nome": "N",
+      "voz": "ene",
+      "texto": "N",
+      "letra": "N"
+     },
+     "W": {
+      "nome": "W",
+      "voz": "dábliu",
+      "texto": "W",
+      "letra": "W"
+     },
+     "A": {
+      "nome": "A",
+      "voz": "á",
+      "texto": "A",
+      "letra": "A"
+     },
+     "R": {
+      "nome": "R",
+      "voz": "erre",
+      "texto": "R",
+      "letra": "R"
+     },
+     "F": {
+      "nome": "F",
+      "voz": "efe",
+      "texto": "F",
+      "letra": "F"
+     },
+     "Q": {
+      "nome": "Q",
+      "voz": "quê",
+      "texto": "Q",
+      "letra": "Q"
+     },
+     "G": {
+      "nome": "G",
+      "voz": "gê",
+      "texto": "G",
+      "letra": "G"
+     },
+     "O": {
+      "nome": "O",
+      "voz": "ó",
+      "texto": "O",
+      "letra": "O"
+     },
+     "C": {
+      "nome": "C",
+      "voz": "cê",
+      "texto": "C",
+      "letra": "C"
+     },
+     "L": {
+      "nome": "L",
+      "voz": "éle",
+      "texto": "L",
+      "letra": "L"
+     },
+     "I": {
+      "nome": "I",
+      "voz": "i",
+      "texto": "I",
+      "letra": "I"
+     },
+     "T": {
+      "nome": "T",
+      "voz": "tê",
+      "texto": "T",
+      "letra": "T"
+     },
+     "E": {
+      "nome": "E",
+      "voz": "é",
+      "texto": "E",
+      "letra": "E"
+     },
+     "S": {
+      "nome": "S",
+      "voz": "esse",
+      "texto": "S",
+      "letra": "S"
+     },
+     "Z": {
+      "nome": "Z",
+      "voz": "zê",
+      "texto": "Z",
+      "letra": "Z"
+     },
+     "X": {
+      "nome": "X",
+      "voz": "xis",
+      "texto": "X",
+      "letra": "X"
+     }
+    }
+   }
   },
   {
    "id": "f06",
    "mec": "classificar",
    "selo": "SEPARE",
-   "enunciado": "A Miga separa os doces pelo som do começo. Ponha cada um na gaveta certa.",
+   "enunciado": "A Fubá separa os doces pelo som do começo. Ponha cada um na gaveta certa.",
    "dica": "Diga o nome devagar e escute só o <b>começo</b>: é BO ou é MA?",
    "conceito": "objetivo3",
    "dados": [
@@ -1404,7 +1736,7 @@
    "id": "f24",
    "mec": "ligar-pontos",
    "selo": "LIGUE AS LETRAS",
-   "enunciado": "Ligue as letras na ordem e descubra o que a Miga assou hoje.",
+   "enunciado": "Ligue as letras na ordem e descubra o que o Fubá assou hoje.",
    "dica": "Depois do I vem o J. Cante o alfabeto baixinho enquanto procura.",
    "conceito": "objetivo1",
    "dados": [
@@ -1489,7 +1821,7 @@
      "rotulo": "A LETRA É",
      "escrito": "Q",
      "fala": "queijo",
-     "enun": "Ouça e toque na <b>letra</b> que a Miga falou.",
+     "enun": "Ouça e toque na <b>letra</b> que o Fubá falou.",
      "hint": "Sem som no computador? A letra está escrita aí em cima.",
      "msg": "Isso! QUEIJO começa com <b>Q</b>.",
      "dicas": [
@@ -1510,7 +1842,7 @@
      "rotulo": "A LETRA É",
      "escrito": "L",
      "fala": "leite",
-     "enun": "Ouça e toque na <b>letra</b> que a Miga falou.",
+     "enun": "Ouça e toque na <b>letra</b> que o Fubá falou.",
      "hint": "Sem som no computador? A letra está escrita aí em cima.",
      "msg": "Isso! LEITE começa com <b>L</b>.",
      "dicas": [
@@ -1531,7 +1863,7 @@
      "rotulo": "A LETRA É",
      "escrito": "S",
      "fala": "sal",
-     "enun": "Ouça e toque na <b>letra</b> que a Miga falou.",
+     "enun": "Ouça e toque na <b>letra</b> que o Fubá falou.",
      "hint": "Sem som no computador? A letra está escrita aí em cima.",
      "msg": "Isso! SAL começa com <b>S</b>.",
      "dicas": [
@@ -1540,7 +1872,173 @@
       "É esta a letra. Ela está acesa: toque nela."
      ]
     }
-   ]
+   ],
+   "dadosExtra": {
+    "CATALOGO": {
+     "pd_pao": {
+      "nome": "PÃO",
+      "voz": "pão",
+      "img": "pd_pao",
+      "letra": "P"
+     },
+     "pd_bolo": {
+      "nome": "BOLO",
+      "voz": "bolo",
+      "img": "pd_bolo",
+      "letra": "B"
+     },
+     "pd_mel": {
+      "nome": "MEL",
+      "voz": "mel",
+      "img": "pd_mel",
+      "letra": "M"
+     },
+     "pd_queijo": {
+      "nome": "QUEIJO",
+      "voz": "queijo",
+      "img": "pd_queijo",
+      "letra": "Q"
+     },
+     "pd_leite": {
+      "nome": "LEITE",
+      "voz": "leite",
+      "img": "pd_leite",
+      "letra": "L"
+     },
+     "pd_ovo": {
+      "nome": "OVO",
+      "voz": "ovo",
+      "img": "pd_mamao",
+      "letra": "O"
+     },
+     "pd_sal": {
+      "nome": "SAL",
+      "voz": "sal",
+      "img": "pd_sal",
+      "letra": "S"
+     },
+     "B": {
+      "nome": "B",
+      "voz": "bê",
+      "texto": "B",
+      "letra": "B"
+     },
+     "D": {
+      "nome": "D",
+      "voz": "dê",
+      "texto": "D",
+      "letra": "D"
+     },
+     "P": {
+      "nome": "P",
+      "voz": "pê",
+      "texto": "P",
+      "letra": "P"
+     },
+     "M": {
+      "nome": "M",
+      "voz": "eme",
+      "texto": "M",
+      "letra": "M"
+     },
+     "N": {
+      "nome": "N",
+      "voz": "ene",
+      "texto": "N",
+      "letra": "N"
+     },
+     "W": {
+      "nome": "W",
+      "voz": "dábliu",
+      "texto": "W",
+      "letra": "W"
+     },
+     "A": {
+      "nome": "A",
+      "voz": "á",
+      "texto": "A",
+      "letra": "A"
+     },
+     "R": {
+      "nome": "R",
+      "voz": "erre",
+      "texto": "R",
+      "letra": "R"
+     },
+     "F": {
+      "nome": "F",
+      "voz": "efe",
+      "texto": "F",
+      "letra": "F"
+     },
+     "Q": {
+      "nome": "Q",
+      "voz": "quê",
+      "texto": "Q",
+      "letra": "Q"
+     },
+     "G": {
+      "nome": "G",
+      "voz": "gê",
+      "texto": "G",
+      "letra": "G"
+     },
+     "O": {
+      "nome": "O",
+      "voz": "ó",
+      "texto": "O",
+      "letra": "O"
+     },
+     "C": {
+      "nome": "C",
+      "voz": "cê",
+      "texto": "C",
+      "letra": "C"
+     },
+     "L": {
+      "nome": "L",
+      "voz": "éle",
+      "texto": "L",
+      "letra": "L"
+     },
+     "I": {
+      "nome": "I",
+      "voz": "i",
+      "texto": "I",
+      "letra": "I"
+     },
+     "T": {
+      "nome": "T",
+      "voz": "tê",
+      "texto": "T",
+      "letra": "T"
+     },
+     "E": {
+      "nome": "E",
+      "voz": "é",
+      "texto": "E",
+      "letra": "E"
+     },
+     "S": {
+      "nome": "S",
+      "voz": "esse",
+      "texto": "S",
+      "letra": "S"
+     },
+     "Z": {
+      "nome": "Z",
+      "voz": "zê",
+      "texto": "Z",
+      "letra": "Z"
+     },
+     "X": {
+      "nome": "X",
+      "voz": "xis",
+      "texto": "X",
+      "letra": "X"
+     }
+    }
+   }
   },
   {
    "id": "f26",
@@ -1868,7 +2366,7 @@
       "UMA COR"
      ],
      "d": [
-      "Pense: quando você viu o <b>B</b>, o que a Miga falou?",
+      "Pense: quando você viu o <b>B</b>, o que o Fubá falou?",
       "Cada letra que você achou tinha um som: bê, eme, pê.",
       "É UM SOM. A resposta está acesa: toque nela."
      ]
@@ -1928,7 +2426,7 @@
     {
      "selo": "O BOLO DA MIGA",
      "nome": "o bolo",
-     "voz": "o bolo da Miga",
+     "voz": "o bolo do Fubá",
      "regs": [
       {
        "k": "mesa",
@@ -1959,7 +2457,7 @@
    "id": "f32",
    "mec": "ligar-pontos",
    "selo": "LIGUE E DESCUBRA",
-   "enunciado": "Uma última surpresa da Miga: ligue as letras e veja o que aparece.",
+   "enunciado": "Uma última surpresa do Fubá: ligue as letras e veja o que aparece.",
    "dica": "É só seguir o alfabeto. Não tem pressa e não tem erro.",
    "conceito": "livre",
    "dados": [
@@ -2034,5 +2532,6 @@
     ]
    }
   }
- ]
+ ],
+ "voz": "masculina"
 }
