@@ -859,26 +859,31 @@
     "FICHAS": [
      {
       "t": "BOLACHA",
-      "alvo": "bo"
+      "alvo": "bo",
+      "img": "pd_bolacha"
      },
      {
       "t": "BOLINHO",
-      "alvo": "bo"
+      "alvo": "bo",
+      "img": "pd_bolinho"
      },
      {
       "t": "MAMÃO",
-      "alvo": "ma"
+      "alvo": "ma",
+      "img": "pd_mamao"
      },
      {
       "t": "MASSA",
-      "alvo": "ma"
+      "alvo": "ma",
+      "img": "pd_massa"
      }
     ],
     "DICAS": [
      "Fale a palavra bem devagar e pare no primeiro pedaço.",
      "BO-LA-CHA começa igual a BO-LO. MA-MÃO começa igual a MA-LA.",
      "Olhe a gaveta com a borda amarela: é ali que esta ficha mora."
-    ]
+    ],
+    "ENUN": "Cada doce começa com um som. Toque no doce e depois na gaveta do som dele."
    }
   },
   {
@@ -2023,26 +2028,31 @@
     "FICHAS": [
      {
       "t": "BOLO",
-      "alvo": "lo"
+      "alvo": "lo",
+      "img": "pd_bolo"
      },
      {
       "t": "BOLINHO",
-      "alvo": "lo"
+      "alvo": "lo",
+      "img": "pd_bolinho"
      },
      {
       "t": "PATO",
-      "alvo": "to"
+      "alvo": "to",
+      "img": "pd_pato"
      },
      {
       "t": "BISCOITO",
-      "alvo": "to"
+      "alvo": "to",
+      "img": "pd_biscoito"
      }
     ],
     "DICAS": [
      "Fale a palavra até o fim e segure o último pedaço.",
      "BO-LO acaba em LO. PA-TO acaba em TO.",
      "Olhe a gaveta com a borda amarela: é ali que esta ficha mora."
-    ]
+    ],
+    "ENUN": "Agora olhe o FIM da palavra. Toque no doce e depois na gaveta certa."
    }
   },
   {
@@ -2118,26 +2128,31 @@
     "FICHAS": [
      {
       "t": "QUEIJO",
-      "alvo": "dois"
+      "alvo": "dois",
+      "img": "pd_queijo"
      },
      {
       "t": "LEITE",
-      "alvo": "dois"
+      "alvo": "dois",
+      "img": "pd_leite"
      },
      {
       "t": "BISCOITO",
-      "alvo": "tres"
+      "alvo": "tres",
+      "img": "pd_biscoito"
      },
      {
       "t": "BOLINHO",
-      "alvo": "tres"
+      "alvo": "tres",
+      "img": "pd_bolinho"
      }
     ],
     "DICAS": [
      "Bata a palavra com a mão antes de decidir.",
      "QUEI-JO tem 2. BIS-COI-TO tem 3.",
      "Olhe a bandeja com a borda amarela: é ali que esta ficha mora."
-    ]
+    ],
+    "ENUN": "Conte as batidas do nome. Toque no doce e depois na bandeja do tamanho dele."
    }
   },
   {
@@ -2533,5 +2548,7 @@
    }
   }
  ],
- "voz": "masculina"
+ "voz": "masculina",
+ "fimTitulo": "Padeiro das Letras!",
+ "fimCracha": "Padeiro das Letras"
 }
