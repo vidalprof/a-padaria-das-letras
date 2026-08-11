@@ -99,7 +99,7 @@
      "msg": "Isso! O <b>MEL</b> é este.",
      "dicas": [
       "Ouça de novo. A palavra é curtinha, tem um golpe só.",
-      "Começa com <b>M</b>, o som de MÃE.",
+      "Começa com <b>M</b>, o som de mãe.",
       "É este o MEL. Ele está aceso: toque nele."
      ]
     }
@@ -139,7 +139,7 @@
      "pd_ovo": {
       "nome": "OVO",
       "voz": "ovo",
-      "img": "pd_mamao",
+      "img": "pd_ovo",
       "letra": "O"
      },
      "pd_sal": {
@@ -325,11 +325,11 @@
      "fora": "bolo",
      "nomeFora": "BOLO",
      "d1": "Fale as quatro devagar e pare no <b>finalzinho</b> de cada uma.",
-     "d2": "PÃO, MÃO e CHÃO terminam com o mesmo som: <b>ÃO</b>. Procure a que termina diferente.",
+     "d2": "PÃO, MÃO e CHÃO terminam com o mesmo som: <b>ão</b>. <b>BOLO</b> é a que não rima.",
      "d3": "A de fora é <b>BOLO</b>: ela termina em <b>O</b>, e as outras três em <b>ÃO</b>.",
      "razoes": [
       {
-       "t": "As outras três terminam com o som <b>ÃO</b>.",
+       "t": "As outras três terminam com o som <b>ão</b>.",
        "ok": 1
       },
       {
@@ -367,11 +367,11 @@
      "fora": "sal",
      "nomeFora": "SAL",
      "d1": "Escute o <b>fim</b> de cada palavra, não o começo.",
-     "d2": "MEL, PAPEL e ANEL terminam com <b>EL</b>. Procure a que termina diferente.",
+     "d2": "MEL, PAPEL e ANEL terminam com o som <b>el</b>. <b>SAL</b> é a que não rima.",
      "d3": "A de fora é <b>SAL</b>: ela termina em <b>AL</b>, e as outras três em <b>EL</b>.",
      "razoes": [
       {
-       "t": "As outras três terminam com o som <b>EL</b>.",
+       "t": "As outras três terminam com o som <b>el</b>.",
        "ok": 1
       },
       {
@@ -693,7 +693,7 @@
      "pd_ovo": {
       "nome": "OVO",
       "voz": "ovo",
-      "img": "pd_mamao",
+      "img": "pd_ovo",
       "letra": "O"
      },
      "pd_sal": {
@@ -1022,7 +1022,7 @@
      ],
      "d": [
       "Diga a palavra devagar: qual pedaço a boca fala PRIMEIRO?",
-      "Começa com o som <b>BO</b>. Ele está pulsando aí embaixo.",
+      "Começa com o som <b>bo</b>. Ele está pulsando aí embaixo.",
       "É o <b>BO</b>. Ele está aceso: toque nele para seguir."
      ]
     },
@@ -1369,7 +1369,7 @@
      "fora": "leite",
      "nomeFora": "LEITE",
      "d1": "Fale as quatro e escute o <b>finalzinho</b>.",
-     "d2": "MASSA, TAÇA e PRAÇA terminam com o som <b>AÇA/ASSA</b>. Procure a que termina diferente.",
+     "d2": "MASSA, TAÇA e PRAÇA terminam com o som <b>aça/assa</b>. <b>LEITE</b> é a que não rima.",
      "d3": "A de fora é <b>LEITE</b>: ela termina em <b>ITE</b>.",
      "razoes": [
       {
@@ -1411,11 +1411,11 @@
      "fora": "queijo",
      "nomeFora": "QUEIJO",
      "d1": "O fim da palavra é o que importa aqui.",
-     "d2": "PATO, GATO e SAPATO terminam com <b>ATO</b>. Procure a que termina diferente.",
+     "d2": "PATO, GATO e SAPATO terminam com o som <b>ato</b>. <b>QUEIJO</b> é a que não rima.",
      "d3": "A de fora é <b>QUEIJO</b>: ela termina em <b>EIJO</b>.",
      "razoes": [
       {
-       "t": "As outras três terminam com o som <b>ATO</b>.",
+       "t": "As outras três terminam com o som <b>ato</b>.",
        "ok": 1
       },
       {
@@ -1756,7 +1756,7 @@
      "pd_ovo": {
       "nome": "OVO",
       "voz": "ovo",
-      "img": "pd_mamao",
+      "img": "pd_ovo",
       "letra": "O"
      },
      "pd_sal": {
