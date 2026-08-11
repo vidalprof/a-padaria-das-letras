@@ -2386,6 +2386,13 @@ function ehSecundaria(id){ return /_cur_|_dica$|_acerto\d|_erro\d/.test(id||"");
    mesmo do texto"*.                                                          */
 function falaDaTela(id){ telaNarrou=false; falar(id); }
 function falar(id,cb){
+  /* o mesmo guarda do `tocaVoz`, pelo mesmo motivo e no mesmo dia: os dois
+     tocadores nao se conhecem, entao a conta de "ja disse isso agora" tem que
+     ser a MESMA para os dois. Sem isto, o enunciado e o alto-falante da peca
+     ainda partiriam juntos quando o id fosse igual. */
+  var _ag2=(new Date()).getTime();
+  if(_ultVoz.k===id && (_ag2-_ultVoz.t)<1200){ if(cb) try{cb();}catch(e){} return; }
+  _ultVoz.k=id; _ultVoz.t=_ag2;
   /* ⚠️ a voz da tela e a PRIMEIRA narracao depois que a tela foi montada
      (`limpa()` zera o `telaNarrou`). O que vier depois, na mesma tela, e reacao
      — elogio, consolo, curiosidade, "ok". A regra antiga era uma LISTA de
@@ -2673,7 +2680,27 @@ function temVoz(s){ var k=chaveVoz(s); return VOZOK[k]?k:null; }
 function paraZap(){ if(zapAtual){ zapAtual.className="zap"; zapAtual=null; } }
 vz.addEventListener("ended",paraZap);
 vz.addEventListener("error",paraZap);
+/* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU, com a atividade na
+   mao: *"o da padaria agora e falado duas vezes juntos, soa estranho"*.
+   Medido depois: em 4 das 7 fases o MESMO mp3 disparava duas vezes na abertura.
+   A causa nasceu de uma boa ideia: varias pecas passaram a NARRAR SOZINHAS ao
+   abrir (na bancada, sem motor, a fase ficava muda) — e dentro da atividade o
+   motor ja narrava o balao, sempre narrou. Sao dois tocadores diferentes
+   (`narr`, do enunciado, e `vz`, das respostas), entao um nao para o outro: as
+   duas vozes partem juntas e se atropelam.
+   Nao adianta consertar peca por peca: a proxima peca nova repete. O guarda
+   mora no TOCADOR, que e por onde tudo passa — pedido repetido da MESMA voz
+   dentro de 1,2s e ignorado. De quebra, crianca que aperta o alto-falante duas
+   vezes seguidas para de ouvir a voz recomecar picada. */
+var _ultVoz={k:null,t:0};
 function tocaVoz(k,bt){
+  /* ⚠️ a chave tem que ser o ARQUIVO, nao o argumento: o `falar` recebe
+     "op_qlqbul" e o `tocaVoz` recebe "qlqbul" — o mesmo mp3 com dois nomes.
+     Comparar os argumentos crus fazia o guarda achar que eram vozes
+     diferentes, e as duas partiam juntas do mesmo jeito. */
+  var _ag=(new Date()).getTime(), _kk="op_"+k;
+  if(_ultVoz.k===_kk && (_ag-_ultVoz.t)<1200){ if(bt){bt.className="zap tocando";zapAtual=bt;} return; }
+  _ultVoz.k=_kk; _ultVoz.t=_ag;
   arma();
   try{ narr.pause(); }catch(e){}
   paraBoca();
@@ -3650,6 +3677,29 @@ MEC["bater-silabas"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -4153,6 +4203,29 @@ MEC["caixas-de-som"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -4645,6 +4718,29 @@ MEC["classificar"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -5087,6 +5183,29 @@ MEC["completar"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -5434,6 +5553,29 @@ MEC["digitar"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -5788,6 +5930,29 @@ MEC["escolher"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -6119,6 +6284,29 @@ MEC["intruso"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -6616,6 +6804,29 @@ MEC["juntar-silabas"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -7072,6 +7283,29 @@ MEC["ligar-pontos"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -7688,6 +7922,29 @@ MEC["memoria"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -8179,6 +8436,29 @@ MEC["ordenar"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -8655,6 +8935,29 @@ MEC["ouvir-achar"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -9300,6 +9603,29 @@ MEC["pintar-desenho"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
@@ -9764,6 +10090,29 @@ MEC["tracar-letra"] = function(f, cen, fim){
        opcao ja usa. So cai na voz do navegador se nao houver gravacao. */
     var diz = function(txt){
       try{
+        /* ⚠️⚠️ LICAO PAGA (ago/2026), e foi o Marcos quem OUVIU: *"o da padaria
+           agora e falado duas vezes juntos, soa estranho"*.
+           Varias pecas ganharam, no mesmo dia, a boa ideia de NARRAR SOZINHAS ao
+           abrir — porque na bancada, sem motor, a fase ficava muda. So que dentro
+           da atividade quem narra o balao e o MOTOR, sempre narrou. As duas vozes
+           partiam juntas e se atropelavam.
+           A peca nao tem como saber se esta na bancada ou na atividade; quem sabe
+           e a ponte. Entao e AQUI que se decide: se o texto pedido e o mesmo que o
+           motor ja esta dizendo (ou acabou de dizer, na meia janela de abertura da
+           fase), a peca cala — o motor ja cumpriu o pedido dela. Qualquer outra
+           fala (a palavra, a silaba, a dica) passa normalmente. */
+        var _limpa = function(s){ return String(s||"").replace(/<[^>]*>/g," ")
+          .replace(/&[a-z]+;|&#\d+;/gi," ").replace(/\s+/g," ").trim().toLowerCase(); };
+        var _agora = _limpa(txt);
+        if(_agora && window.__dizMotor && window.__dizMotor === _agora) return;
+        try{
+          var _b = document.getElementsByClassName("balao")[0];
+          if(_b && _limpa(_b.textContent) === _agora){
+            window.__dizMotor = _agora;
+            setTimeout(function(){ window.__dizMotor = null; }, 1200);
+            return;
+          }
+        }catch(_e){}
         var k = (typeof temVoz === "function") ? temVoz(txt) : null;
         if(k && typeof tocaVoz === "function"){ tocaVoz(k); return; }
         if(!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
