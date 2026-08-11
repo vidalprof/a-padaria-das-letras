@@ -28,8 +28,8 @@
   "objetivo4": "Blumenau, 1º ano, Língua Portuguesa — Todos os campos de atuação · Análise linguística/semiótica (alfabetização) · objeto de conhecimento: Construção do sistema alfabético e da ortografia — HABILIDADE: “Segmentar oralmente palavras em sílabas.” Conceitos/conteúdos: sílabas, separação de sílabas, segmentação de palavras, relação grafema/fonema.",
   "objetivo5": "Blumenau, 1º ano, Língua Portuguesa — Campo artístico-literário · Análise linguística/semiótica (alfabetização) · objeto de conhecimento: Construção do sistema alfabético e da ortografia — HABILIDADE: “Relacionar elementos sonoros (sílabas, fonemas, partes de palavras) com sua representação escrita.” Conceitos/conteúdos: alfabeto, fonema/grafema, sílaba.",
   "livre": "SEM COBRANÇA — fases de fecho, para a criança brincar com o material que ela acabou de aprender. Não avaliam nada e não valem como cobertura de habilidade (decisão do Marcos, ago/2026: o fim tem que ser divertido e do tema).",
-  "objetivo6": "Blumenau, 1º ano, Língua Portuguesa — Todos os campos de atuação · Análise linguística/semiótica (alfabetização) · objeto de conhecimento: Consciência fonológica — HABILIDADE: “Reconhecer e comparar palavras que rimam, identificando semelhanças e diferenças entre os sons finais das palavras.”",
-  "objetivo7": "Blumenau, 1º ano, Língua Portuguesa — Todos os campos de atuação · Análise linguística/semiótica (alfabetização) · objeto de conhecimento: Construção do sistema alfabético — HABILIDADE: “Segmentar oralmente palavras em sílabas e fonemas, relacionando os sons às letras que os representam na escrita.”"
+  "objetivo6": "Blumenau, 1º ano, Língua Portuguesa — Campo artístico-literário · Análise linguística/semiótica (alfabetização) · objeto de conhecimento: Forma de composição do texto — HABILIDADE: “Identificar e (re)produzir, em cantiga, quadras, quadrinhas, parlendas, trava-línguas e canções, rimas, aliterações, assonâncias, o ritmo de fala relacionado ao ritmo e à melodia das músicas e seus efeitos de sentido.” Conceitos/conteúdos: rimas, aliteração, assonância; o ritmo de fala; melodia da música.",
+  "objetivo7": "Blumenau, 1º ano, Língua Portuguesa — Todos os campos de atuação · Análise linguística/semiótica (alfabetização) · objeto de conhecimento: Construção do sistema alfabético e da ortografia — HABILIDADE: “Identificar fonemas e sua representação por letras.” Conceitos/conteúdos: fonema/grafema, alfabeto e som das letras."
  },
  "fases": [
   {
@@ -425,7 +425,12 @@
      ],
      "dic": "Depois do I vem o J. Cante para conferir."
     }
-   ]
+   ],
+   "dadosExtra": {
+    "ENUN": "Toque no pedaço que <b>falta</b> na frase.",
+    "DEPOIS": "Leia a frase inteira antes de escolher.",
+    "FECHO": "Você fechou todas as frases da padaria!"
+   }
   },
   {
    "id": "f08",
@@ -950,7 +955,11 @@
       "É <b>SAPATO</b>: GATO e SAPATO terminam igual."
      ]
     }
-   ]
+   ],
+   "dadosExtra": {
+    "TITULO": "PALAVRAS QUE RIMAM",
+    "FECHO": "Você achou todas as palavras que rimam!"
+   }
   },
   {
    "id": "f02",
@@ -1335,7 +1344,11 @@
       "São 3. O número está aceso: toque nele."
      ]
     }
-   ]
+   ],
+   "dadosExtra": {
+    "TITULO": "AQUECIMENTO DA PADARIA",
+    "FECHO": "Você lembrou de tudo o que já aprendeu!"
+   }
   },
   {
    "mec": "intruso",
@@ -1512,7 +1525,11 @@
      "pista": "Sem ele o pão fica sem gosto.",
      "dic": "Diga devagar: <b>S-A-L</b>."
     }
-   ]
+   ],
+   "dadosExtra": {
+    "ENUN": "Monte a palavra da padaria, letra por letra.",
+    "FECHO": "Você montou todas as palavras da padaria!"
+   }
   },
   {
    "id": "f18",
@@ -2301,7 +2318,12 @@
      ],
      "dic": "Diga SA-PA-TO devagar e escute o meio."
     }
-   ]
+   ],
+   "dadosExtra": {
+    "ENUN": "Toque no pedaço que <b>falta</b> na frase.",
+    "DEPOIS": "Leia a frase inteira antes de escolher.",
+    "FECHO": "Você fechou todas as frases da padaria!"
+   }
   },
   {
    "id": "f20",
